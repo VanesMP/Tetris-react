@@ -1,4 +1,4 @@
-//creating all the tetrominos with each property
+//creating all the tetrominos with each property ( form and color)
 
 export const TETROMINOS = {
     0: {
