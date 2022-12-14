@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 
+//need it for cleaning the stage when restart the game
+import { createStage } from "../gameHelpers";
+
 //styled components
 import { StyledTetrisWrapper, StyledTetris } from "./styles/StyledTetris";
 
@@ -12,7 +15,7 @@ import Stage from "./Stage";
 import Display from "./Display";
 import StartButton from "./StartButton";
 
-export const Tetris = () => {
+const Tetris = () => {
 //create state : the speed is modified according to the level
     const [dropTime, setDropTime] = useState(null);
 
@@ -43,3 +46,5 @@ export const Tetris = () => {
         </StyledTetrisWrapper>
     )
 }
+
+export default Tetris;
