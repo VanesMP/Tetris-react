@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { STAGE_WIDTH } from "../gameHelpers";
 import { randomTetrominos } from "../tetrominos";
 
 //create custom hook
@@ -12,7 +13,24 @@ export const usePlayer = () => {
         collided: false,
     })
 
+    const updatePlayerPos = ({ x, y, collided }) => {
+        setPlayer(prev => ({
+            ...prev,
+            pos: { x: (prev.pos.x += x), y: (prev.pos.y += y)},
+            collided,
+        }))
+    }
 
-    return [player];
+    const resetPlayer = useCallback( 
+        () => {
+            setPlayer({
+                pos: { x: STAGE_WIDTH / 2 - 2, y: 0},
+                tetromino: randomTetrominos().shape,
+                collided: false,
+
+            })
+    }, [])
+
+    return [player, updatePlayerPos, resetPlayer];
 }
 
