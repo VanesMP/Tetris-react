@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 import { STAGE_WIDTH } from "../gameHelpers";
-import { randomTetrominos } from "../tetrominos";
+import { TETROMINOS, randomTetrominos } from "../tetrominos";
 
 //create custom hook
 export const usePlayer = () => {
@@ -9,7 +9,7 @@ export const usePlayer = () => {
     //and put the props for the position, shape of tetrominos, collipse
     const [player, setPlayer] = useState({
         pos: { x: 0, y: 0 },
-        tetromino: randomTetrominos().shape,
+        tetromino: TETROMINOS[0].shape,
         collided: false,
     })
 

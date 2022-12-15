@@ -1,6 +1,7 @@
 //creating all the tetrominos with each property ( form and color)
 
 export const TETROMINOS = {
+    //shape 0 is used when the player starts the game
     0: {
         shape: [
             [0]
