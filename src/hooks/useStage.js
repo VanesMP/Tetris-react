@@ -5,7 +5,7 @@ import { createStage } from "../gameHelpers";
 //droping in the stage
 
 export const useStage = (player, resetPlayer) => {
-    const [stage, setStage] = useState(createStage);
+    const [stage, setStage] = useState(createStage());
 
     useEffect(() => {
         const updateStage = prevStage => {
@@ -25,11 +25,15 @@ export const useStage = (player, resetPlayer) => {
                     }
                 })
             });
+            //Then check if we collided
+            if (player.collided) {
+                resetPlayer();
+            };
 
             return newStage;
         };
         setStage(prev => updateStage(prev));
-    }, [player.collided, player.pos.x, player.pos.y, player.tetromino]);
+    }, [player.collided, player.pos.x, player.pos.y, player.tetromino, resetPlayer]);
 
     return [stage, setStage];
 }
