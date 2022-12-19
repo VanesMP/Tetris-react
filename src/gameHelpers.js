@@ -14,15 +14,15 @@ export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
     for (let y = 0; y < player.tetromino.length; y += 1) {
         for (let x = 0; x < player.tetromino[y].length; x += 1) {
 
-            //1.Check that we're on an actal Tetromino cell
+            //1.Check that we're on an actual Tetromino cell
             if (player.tetromino[y][x] !== 0) {
                 if (
                 //2.Check that our move is inside the game areas height (y)
                 //We shouldn't go through the bottom of the play areas
                 !stage[y + player.pos.y + moveY] || 
-                    //3.Check that our move is inside the game areas height (x)
+                    //3.Check that our move is inside the game areas width (x)
                     !stage[y + player.pos.y + moveY][x + player.pos.x + moveX] ||
-                        //4.Check that the cellwer'e moving to isn't set the clear 
+                        //4.Check that the cell wer'e moving to isn't set the clear 
                         stage[y + player.pos.y + moveY][x + player.pos.x + moveX][1] !== 'clear'
                 ) {
                     return true;
@@ -31,5 +31,5 @@ export const checkCollision = (player, stage, { x: moveX, y: moveY }) => {
 
         }
     }
-    
+    return false;
 }

@@ -25,15 +25,17 @@ const Tetris = () => {
     const [player, updatePlayerPos, resetPlayer] = usePlayer();
     const [stage, setStage] = useStage(player, resetPlayer);
 
+    console.log('re-render');
+
     const movePlayer = dir => {
         if(!checkCollision(player, stage, { x: dir, y: 0 })) {
             updatePlayerPos({ x: dir, y: 0 })
         }
     }
-//Reset all the game
+//Reset everything
     const startGame = () => {
-        setStage(createStage());
-        resetPlayer();
+        setStage(createStage()); //reset the game
+        resetPlayer(); //reset the player
         setGameOver(false)
     }
 
@@ -43,6 +45,7 @@ const Tetris = () => {
     } else {
         //Game Over
         if (player.pos.y < 1) {
+            console.log("GameOver!!!");
             setGameOver(true);
             setDropTime(null);
         }
@@ -58,11 +61,11 @@ const Tetris = () => {
     const move = ({ keyCode }) => {
         if(!gameOver){
             if(keyCode === 37) {
-                movePlayer(-1)
+                movePlayer(-1); //move to the left behind the x-axis
             } else if (keyCode === 39) {
-                movePlayer(1)
+                movePlayer(1); //move to the right behind the x-axis
             } else if (keyCode === 40) {
-                dropPlayer()
+                dropPlayer();
             }
         }
     }
