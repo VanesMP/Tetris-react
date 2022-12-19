@@ -13,6 +13,28 @@ export const usePlayer = () => {
         collided: false,
     });
 
+    //matrix == tetrominos
+    const rotate = (matrix, dir) => {
+        //Make the rows to become a cols (transpose)
+        const rotateTetro = matrix.map((_, index) =>
+            matrix.map((col) => col[index])
+            );
+        //Reverse each row to get a rotate matrix
+        if(dir > 0) return rotateTetro.map(row=> row.reverse());
+        return rotateTetro.reverse();
+    }
+
+    // different to rotate() because we need to detection collision when the player rotate the tetromino
+    const playerRotate = (stage, dir) => {
+        //create a complete clone player because we dont work with the plaer in the state and we dont want to mute the state.
+        const clonedPlayer = JSON.parse(JSON.stringify(player));
+        //Get the tetrominos of the player
+        clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
+
+        setPlayer(clonedPlayer);
+
+    }
+
     const updatePlayerPos = ({ x, y, collided }) => {
         setPlayer(prev => ({
             ...prev,
@@ -30,6 +52,6 @@ export const usePlayer = () => {
             })
     }, [])
 
-    return [player, updatePlayerPos, resetPlayer];
+    return [player, updatePlayerPos, resetPlayer, playerRotate];
 }
 

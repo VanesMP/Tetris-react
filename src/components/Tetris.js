@@ -22,7 +22,7 @@ const Tetris = () => {
 //create state : the game is over or not?(true or false)
     const [gameOver, setGameOver] = useState(false);
 
-    const [player, updatePlayerPos, resetPlayer] = usePlayer();
+    const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
     const [stage, setStage] = useStage(player, resetPlayer);
 
     console.log('re-render');
@@ -66,6 +66,9 @@ const Tetris = () => {
                 movePlayer(1); //move to the right behind the x-axis
             } else if (keyCode === 40) {
                 dropPlayer();
+            } else if (keyCode === 38) {
+                //just one implementaion to rotate the tetromino to th right
+                playerRotate(stage, 1);
             }
         }
     }
