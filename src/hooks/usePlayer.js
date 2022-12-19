@@ -33,7 +33,6 @@ export const usePlayer = () => {
 
         //fix bug: the tetrominos only rotate inside the stage, with the methode math()
         //1. save the position
-        // const pos =
 
         setPlayer(clonedPlayer);
 
