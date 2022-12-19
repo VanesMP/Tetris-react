@@ -31,6 +31,10 @@ export const usePlayer = () => {
         //Get the tetrominos of the player
         clonedPlayer.tetromino = rotate(clonedPlayer.tetromino, dir);
 
+        //fix bug: the tetrominos only rotate inside the stage, with the methode math()
+        //1. save the position
+        // const pos =
+
         setPlayer(clonedPlayer);
 
     }
